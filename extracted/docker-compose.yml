@@ -1,0 +1,21 @@
+services:
+  kuaishou-sign:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kuaishou-pure-sign:latest
+    container_name: kuaishou-sign
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8000}:8000"
+    environment:
+      # 签名状态（按需调整，多实例部署时各自设置不同初值避免冲突）
+      SIG3_COUNTER: "${SIG3_COUNTER:-1}"
+      ATLAS64_COUNTER: "${ATLAS64_COUNTER:-1}"
+      KAW_SEQ_START: "${KAW_SEQ_START:-1}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/ping',timeout=3).read()==b'\"pong\"' else 1)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

@@ -1,0 +1,38 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+
+# 虚拟环境
+venv/
+.venv/
+env/
+.env/
+
+# Git / IDE
+.git/
+.gitignore
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logs/
+
+# 构建产物
+dist/
+build/
+
+# 保留 wb_*.bin（不能忽略）
+# !wb_*.bin  —— 无需显式保留，因为未被忽略
